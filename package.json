@@ -1,0 +1,41 @@
+{
+  "name": "react-listview-sticky-header",
+  "version": "0.0.0",
+  "description": "react listview with sticky header",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start ./karma.conf.js --single-run --reports nyan"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cht8687/react-listview-sticky-header.git"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "component"
+  ],
+  "author": "Robert Chang <cht8687@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cht8687/react-listview-sticky-header/issues"
+  },
+  "homepage": "https://github.com/cht8687/react-listview-sticky-header#readme",
+  "peerDependencies": {
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "babel-core": "^5.8.22",
+    "babel-eslint": "^4.0.10",
+    "babel-loader": "^5.3.2",
+    "eslint": "^1.2.1",
+    "eslint-loader": "^1.0.0",
+    "eslint-plugin-react": "^3.2.3",
+    "html-webpack-plugin": "^1.6.1",
+    "lodash": "^3.10.1",
+    "react-hot-loader": "^1.2.9",
+    "webpack": "^1.11.0",
+    "webpack-dev-server": "^1.10.1"
+  }
+}
