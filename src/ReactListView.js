@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ListHeader from './lib/ListHeader';
+import ListItem from './lib/ListItem';
 import _ from 'lodash';
 
 export default class ReactListView extends Component {
@@ -14,10 +16,18 @@ export default class ReactListView extends Component {
       {
         _.each(data).map(function(k) {
           return (
-            <div>
-              <div> {k.headerName} </div>
-              <div> {k.item} </div>
-            </div>
+            <ul>
+              <ListHeader text = {k.headerName} />
+              {
+                _.each(k.items).map(function(n){
+                  return (
+                    <span>
+                      <ListItem text = {n.title} />
+                    </span>
+                  )
+                })
+              }
+            </ul>
           );
         })
       }
