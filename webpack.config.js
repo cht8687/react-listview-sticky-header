@@ -4,12 +4,12 @@ var path = require('path');
 var env = process.env.NODE_ENV || 'development';
 
 module.exports = {
-	devtool: 'source-map',
-	entry: [
-	  './src/example/Example.js',
-	  'webpack-dev-server/client?http://localhost:8080',
-	  'webpack/hot/only-dev-server'
-	],
+  devtool: 'source-map',
+  entry: [
+    './src/example/Example.js',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server'
+  ],
     output: {filename: 'bundle.js', path: path.resolve('example')},
     plugins: [
       new HtmlWebpackPlugin(),
