@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactListView from '..';
+import _ from 'lodash';
 
 class App extends React.Component {
 
@@ -11,9 +12,16 @@ class App extends React.Component {
    const { data } = this.props;
     return (
       <div>
-        <ReactListView
-         data = { data }
-        />
+      {
+        _.each(data).map(function(k) {
+          return (
+            <div>
+              <ReactListView header={k.headerName} 
+                             items={k.items}/>
+            </div>
+          );
+        })
+      }
       </div>
     );
   }
@@ -95,5 +103,5 @@ const DATALIST = [
   }
 ];
 
-React.render(<App data= { DATALIST } />, document.body);
+React.render(<App data= {DATALIST} />, document.body);
 
