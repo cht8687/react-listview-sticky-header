@@ -7,7 +7,7 @@ This project is trying to build listview with sticky header.
 ## Development
 
 ```bash
-npm install
+npm install react-listview-sticky-header
 ```
 
 Then
