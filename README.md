@@ -4,7 +4,7 @@ welcome to contribute.
 
 This project is trying to build listview with sticky header.
 
-## Development and testing
+## Development
 
 ```bash
 npm install

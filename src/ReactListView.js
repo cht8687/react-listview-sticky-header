@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import ListHeader from './lib/ListHeader';
+import ListItems from './lib/ListItems';
 
 export default class ReactListView extends Component {
-
   static propTypes = {
     header: React.PropTypes.string.isRequired,
     items: React.PropTypes.array.isRequired
@@ -11,8 +12,8 @@ export default class ReactListView extends Component {
     const { header, items } = this.props;
     return (
       <ul>     
-        <h1>{header}</h1>
-        <h1>{items}</h1>
+        <ListHeader header={header} />
+        <ListItems  items={items}/>
       </ul>
     );
   }

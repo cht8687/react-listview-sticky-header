@@ -13,6 +13,7 @@ class App extends React.Component {
     return (
       <div>
       {
+        // we are enable user to send in whatever header and items info from here
         _.each(data).map(function(k) {
           return (
             <div>
