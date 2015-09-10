@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactListView from '..';
-import _ from 'lodash';
 
 class App extends React.Component {
 
@@ -14,11 +13,12 @@ class App extends React.Component {
       <div>
       {
         // we are enable user to send in whatever header and items info from here
-        _.each(data).map(function(k) {
+        Object.keys(data).map(k => {
+          const { headerName, items } = data[k];
           return (
-            <div>
-              <ReactListView header={k.headerName} 
-                             items={k.items}/>
+            <div key={k}>
+              <ReactListView header={headerName} 
+                             items={items}/>
             </div>
           );
         })

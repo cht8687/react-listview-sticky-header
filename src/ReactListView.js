@@ -13,7 +13,7 @@ export default class ReactListView extends Component {
     return (
       <ul>     
         <ListHeader header={header} />
-        <ListItems  items={items}/>
+        <ListItems items={items}/>
       </ul>
     );
   }
