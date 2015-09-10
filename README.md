@@ -2,15 +2,25 @@
 working progress...
 welcome to contribute.
 
-This project is trying to build listview with sticky header.
+This project is trying to build listview with sticky headers using React.
 
 ## Development
 
 ```bash
-npm install react-listview-sticky-header
-```
+git clone git@github.com:cht8687/react-listview-sticky-header.git
+```bash
 
-Then
+# then
+
+```bash
+cd react-listview-sticky-header
+```bash
+
+# then
+
+npm install
+# then
+open http://localhost:8080
 
 ```bash
 webpack-dev-server
