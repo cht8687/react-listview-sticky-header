@@ -1,6 +1,14 @@
 import React from 'react';
 import ReactListView from '..';
 
+const styles = {
+  'top': '20px',
+  'height': '400px',
+  'overflow-y': 'auto',
+  'outline': '1px dashed red',
+  'width': '40%'
+};
+
 class App extends React.Component {
 
   static propTypes = {
@@ -10,7 +18,7 @@ class App extends React.Component {
   render() {
    const { data } = this.props;
     return (
-      <div>
+      <div style={styles}>
       {
         // we are enable user to send in whatever header and items info from here
         Object.keys(data).map(k => {
@@ -30,76 +38,112 @@ class App extends React.Component {
 
 const DATALIST = [
   {
-    headerName : "A",
+    headerName : "ListA",
     items : [{
-      title : "A_A"
+      title : "items1"
     }, {
-      title : "A_B"
+      title : "items2"
     }, {
-      title : "A_C"
+      title : "items3"
+    },{
+      title : "items4"
+    },{
+      title : "items5"
+    },{
+      title : "items6"
     }]
   }, {
-    headerName : "B",
+    headerName : "ListB",
     items : [{
-      title : "B_A"
+      title : "items1"
     }, {
-      title : "B_B"
+      title : "items2"
     }, {
-      title : "B_C"
+      title : "items3"
+    },{
+      title : "items4"
+    },{
+      title : "items5"
+    },{
+      title : "items6"
     }]
   },{
-    headerName : "C",
+    headerName : "ListC",
     items : [{
-      title : "C_A"
+      title : "items1"
+    }, {
+      title : "items2"
+    }, {
+      title : "items3"
     },{
-      title : "C_B"
+      title : "items4"
     },{
-      title : "C_C"
+      title : "items5"
+    },{
+      title : "items6"
     }]
   },{
-    headerName : "D",
+    headerName : "ListD",
     items : [{
-      title : "D_A"
+      title : "items1"
+    }, {
+      title : "items2"
+    }, {
+      title : "items3"
     },{
-      title : "D_B"
+      title : "items4"
     },{
-      title : "D_C"
+      title : "items5"
+    },{
+      title : "items6"
     }]
   },{
-    headerName : "E",
+    headerName : "ListE",
     items : [{
-      title : "E_A"
+      title : "items1"
+    }, {
+      title : "items2"
+    }, {
+      title : "items3"
     },{
-      title : "E_B"
+      title : "items4"
     },{
-      title : "E_C"
+      title : "items5"
+    },{
+      title : "items6"
     }]
   },{
-    headerName : "F",
+    headerName : "ListF",
     items : [{
-      title : "F_A"
-    },{
-      title : "F_B"
-    },{
-      title : "F_C"
+      title : "items1"
+    }, {
+      title : "items2"
+    }, {
+      title : "items3"
     }]
   },{
-    headerName : "G",
+    headerName : "ListG",
     items : [{
-      title : "G_A"
+      title : "items1"
+    }, {
+      title : "items2"
+    }, {
+      title : "items3"
     },{
-      title : "G_B"
+      title : "items4"
     },{
-      title : "G_C"
+      title : "items5"
+    },{
+      title : "items6"
     }]
   },{
-    headerName : "H",
+    headerName : "ListH",
     items : [{
-      title : "H_A"
-    },{
-      title : "H_B"
-    },{
-      title : "H_C"
+      title : "items1"
+    }, {
+      title : "items2"
+    }, {
+      title : "items3"
     }]
   }
 ];

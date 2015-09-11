@@ -1,11 +1,10 @@
-
 import React, {Component} from 'react';
 
 const styles = {
+  width: '50%',
+  height: '40%',
   background: 'blue',
-  color: 'white',
-  width: '250px',
-
+  color: 'white'
 };
 
 export default class ListHeader extends Component {
@@ -16,7 +15,9 @@ export default class ListHeader extends Component {
   render() {
     const { header } = this.props;
     return (
-      <span style={styles}>{header}<br /></span>
+      <div style={styles}>
+        <span>{header}<br /></span>
+      </div>
     );
   }  
 }
