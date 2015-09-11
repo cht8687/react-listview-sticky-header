@@ -4,7 +4,7 @@ import ReactListView from '..';
 const styles = {
   'top': '20px',
   'height': '400px',
-  'overflow-y': 'auto',
+  'overflowY': 'auto',
   'outline': '1px dashed red',
   'width': '40%'
 };
