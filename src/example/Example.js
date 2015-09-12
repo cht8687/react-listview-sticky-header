@@ -1,14 +1,6 @@
 import React from 'react';
 import ReactListView from '..';
 
-const styles = {
-  'top': '20px',
-  'height': '400px',
-  'overflowY': 'auto',
-  'outline': '1px dashed red',
-  'width': '40%'
-};
-
 class App extends React.Component {
 
   static propTypes = {
@@ -18,20 +10,9 @@ class App extends React.Component {
   render() {
    const { data } = this.props;
     return (
-      <div style={styles}>
-      {
-        // we are enable user to send in whatever header and items info from here
-        Object.keys(data).map(k => {
-          const { headerName, items } = data[k];
-          return (
-            <div key={k}>
-              <ReactListView header={headerName} 
-                             items={items}/>
-            </div>
-          );
-        })
-      }
-      </div>
+      <ReactListView data={data} 
+                     headerAttName="headerName"
+                     itemsAttName="items" />
     );
   }
 }
