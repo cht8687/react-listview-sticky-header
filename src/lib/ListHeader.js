@@ -15,9 +15,7 @@ export default class ListHeader extends Component {
   render() {
     const { header } = this.props;
     return (
-      <div style={styles}>
-        <span>{header}<br /></span>
-      </div>
+      <div style={styles}>{header}</div>
     );
   }  
 }
