@@ -21,7 +21,8 @@ export default class ReactListView extends Component {
   static defaultProps = {
     events: ['scroll', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll', 'resize', 'touchmove', 'touchend'],
     _instances:[],
-    _positionMap: new Set()
+    _positionMap: new Set(),
+    _topPos:''
   }
 
   static propTypes = {
@@ -30,13 +31,15 @@ export default class ReactListView extends Component {
     itemsAttName: React.PropTypes.string.isRequired,
     events: React.PropTypes.array,
     _instances: React.PropTypes.array,
-    _positionMap: React.PropTypes.object
+    _positionMap: React.PropTypes.object,
+    _topPos: React.PropTypes.number
   };
 
   state = {
     events: this.props.events,
     _instances: this.props._instances,
-    _positionMap: this.props._positionMap
+    _positionMap: this.props._positionMap,
+    _topPos: this.props._topPos
   }
 
   componentDidMount() {
@@ -61,14 +64,17 @@ export default class ReactListView extends Component {
   }
 
   initHeaderPositions() {
+    // Retrieve all instance of headers and store position info
     this.state._instances.forEach((k)=>{
-      console.log(k.refs.header.getDOMNode().offsetTop);
       this.state._positionMap.add(new HeaderPosInfo(
           k, 
           k.refs.header.getDOMNode().offsetTop,
           k.refs.header.getDOMNode().offsetHeight
         ));
     });
+    let it = this.state._positionMap.entries();
+    let first = it.next();
+    this.state._topPos = first.value[0].originalPosition;
   }
 
   initStickyHeaders () {
@@ -86,7 +92,9 @@ export default class ReactListView extends Component {
   }
 
   onScroll() {
-
+    
+    let currentWindowScrollTop = this.state._topPos;
+    console.log(currentWindowScrollTop);    
   }
 
   render() {
