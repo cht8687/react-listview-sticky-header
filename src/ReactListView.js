@@ -9,21 +9,34 @@ const styles = {
   'width': '40%'
 };
 
+class HeaderPosInfo {
+  constructor(headerObj, originalPosition, originalHeight) {
+    this.headerObj = headerObj;
+    this.originalPosition = originalPosition;
+    this.originalHeight = originalHeight; 
+  }
+}
+
 export default class ReactListView extends Component {
   static defaultProps = {
     events: ['scroll', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll', 'resize', 'touchmove', 'touchend'],
-    _instances:[]
+    _instances:[],
+    _positionMap: new Set()
   }
 
   static propTypes = {
     data: React.PropTypes.array.isRequired,
     headerAttName: React.PropTypes.string.isRequired,
     itemsAttName: React.PropTypes.string.isRequired,
-    events: React.PropTypes.array
+    events: React.PropTypes.array,
+    _instances: React.PropTypes.array,
+    _positionMap: React.PropTypes.object
   };
 
   state = {
     events: this.props.events,
+    _instances: this.props._instances,
+    _positionMap: this.props._positionMap
   }
 
   componentDidMount() {
@@ -47,10 +60,20 @@ export default class ReactListView extends Component {
     }
   }
 
+  initHeaderPositions() {
+    this.state._instances.forEach((k)=>{
+      console.log(k.refs.header.getDOMNode().offsetTop);
+      this.state._positionMap.add(new HeaderPosInfo(
+          k, 
+          k.refs.header.getDOMNode().offsetTop,
+          k.refs.header.getDOMNode().offsetHeight
+        ));
+    });
+  }
+
   initStickyHeaders () {
     this.state._instances = this.refsToArray(this, 'ListHeader');
-    console.log(this.state._instances);
-    
+    this.initHeaderPositions();
 
     // Register events listeners with the listview div
     this.state.events.forEach(type => {
