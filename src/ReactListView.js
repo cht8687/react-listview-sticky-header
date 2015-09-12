@@ -72,9 +72,9 @@ export default class ReactListView extends Component {
           k.refs.header.getDOMNode().offsetHeight
         ));
     });
-    let it = this.state._positionMap.entries();
+    let it = this.state._positionMap.values();
     let first = it.next();
-    this.state._topPos = first.value[0].originalPosition;
+    this.state._topPos = first.value.originalPosition;
   }
 
   initStickyHeaders () {
