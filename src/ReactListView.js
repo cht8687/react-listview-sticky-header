@@ -84,22 +84,18 @@ export default class ReactListView extends Component {
     // Register events listeners with the listview div
     this.props.events.forEach(type => {
       if (window.addEventListener) {
-        React.findDOMNode(this.refs.listview).addEventListener(type, this.onScroll, false);
+        React.findDOMNode(this.refs.listview).addEventListener(type, this.onScroll.bind(this), false);
       } else {
-        React.findDOMNode(this.refs.listview).attachEvent('on' + type, this.onScroll, false);
+        React.findDOMNode(this.refs.listview).attachEvent('on' + type, this.onScroll.bind(this), false);
       }
     });
   }
 
   onScroll() {
-    this.updatePos();
-  }
-
-  updatePos() {
     let currentWindowScrollTop = this.props._topPos;
     console.log(currentWindowScrollTop);
   }
-
+  
   render() {
     const { data, headerAttName, itemsAttName } = this.props;
     let _refi = 0;
