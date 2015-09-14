@@ -32,7 +32,7 @@ export default class ReactListView extends Component {
     events: React.PropTypes.array,
     _instances: React.PropTypes.array,
     _positionMap: React.PropTypes.object,
-    _topPos: React.PropTypes.number
+    _topPos: React.PropTypes.string
   };
 
   state = {
@@ -65,36 +65,39 @@ export default class ReactListView extends Component {
 
   initHeaderPositions() {
     // Retrieve all instance of headers and store position info
-    this.state._instances.forEach((k)=>{
-      this.state._positionMap.add(new HeaderPosInfo(
+    this.props._instances.forEach((k)=>{
+      this.props._positionMap.add(new HeaderPosInfo(
           k, 
           k.refs.header.getDOMNode().offsetTop,
           k.refs.header.getDOMNode().offsetHeight
         ));
     });
-    let it = this.state._positionMap.values();
+    let it = this.props._positionMap.values();
     let first = it.next();
-    this.state._topPos = first.value.originalPosition;
+    this.props._topPos = first.value.originalPosition;
   }
 
   initStickyHeaders () {
-    this.state._instances = this.refsToArray(this, 'ListHeader');
+    this.props._instances = this.refsToArray(this, 'ListHeader');
     this.initHeaderPositions();
 
     // Register events listeners with the listview div
-    this.state.events.forEach(type => {
+    this.props.events.forEach(type => {
       if (window.addEventListener) {
         React.findDOMNode(this.refs.listview).addEventListener(type, this.onScroll, false);
       } else {
         React.findDOMNode(this.refs.listview).attachEvent('on' + type, this.onScroll, false);
       }
-    }, this);
+    });
   }
 
   onScroll() {
-    
-    let currentWindowScrollTop = this.state._topPos;
-    console.log(currentWindowScrollTop);    
+    this.updatePos();
+  }
+
+  updatePos() {
+    let currentWindowScrollTop = this.props._topPos;
+    console.log(currentWindowScrollTop);
   }
 
   render() {
