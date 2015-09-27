@@ -35,13 +35,12 @@ export default class ReactListView extends Component {
     _positionMap: React.PropTypes.object,
     _topPos: React.PropTypes.string,
     _topWrapper: React.PropTypes.object
-  };
+  }
 
   state = {
-    events: this.props.events,
     _instances: this.props._instances,
     _positionMap: this.props._positionMap,
-    _topPos: this.props._topPos
+    events: this.props.events
   }
 
   componentDidMount() {
@@ -67,25 +66,36 @@ export default class ReactListView extends Component {
 
   initHeaderPositions() {
     // Retrieve all instance of headers and store position info
-    this.props._instances.forEach((k)=>{
-      this.props._positionMap.add(new HeaderPosInfo(
-          k, 
-          k.refs.header.getDOMNode().offsetTop,
-          k.refs.header.getDOMNode().offsetHeight
-        ));
+    
+    let instances = new Set();
+    this.state._instances.forEach((k)=>{
+      instances.add(new HeaderPosInfo(
+        k, 
+        k.refs.header.getDOMNode().offsetTop,
+        k.refs.header.getDOMNode().offsetHeight
+      ))
     });
-    let it = this.props._positionMap.values();
-    let first = it.next();
-    this.props._topPos = first.value.originalPosition;
-    this.props._topWrapper = first.value.headerObj;
+
+    // set state
+    this.setState({
+        _positionMap: Object.assign(this.state._positionMap, 
+          instances
+        )
+    });
   }
 
   initStickyHeaders () {
-    this.props._instances = this.refsToArray(this, 'ListHeader');
+    let instances = this.refsToArray(this, 'ListHeader');
+    this.setState({
+      _instances: Object.assign(this.state._instances, {
+        instances
+      })
+    });
+
     this.initHeaderPositions();
 
     // Register events listeners with the listview div
-    this.props.events.forEach(type => {
+    this.state.events.forEach(type => {
       if (window.addEventListener) {
         React.findDOMNode(this.refs.listview).addEventListener(type, this.onScroll.bind(this), false);
       } else {
@@ -95,8 +105,9 @@ export default class ReactListView extends Component {
   }
 
   onScroll() {
-    // to do: 
+    
     // update current header positions and apply fixed positions to the top one
+    console.log(this.props._positionMap[1]);
     
   }
 
