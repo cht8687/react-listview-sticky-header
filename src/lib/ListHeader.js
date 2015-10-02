@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
 const styles = {
-  width: '50%',
-  height: '40%',
+  width: '300px',
+  height: '20px',
   background: 'blue',
   color: 'white'
 };
