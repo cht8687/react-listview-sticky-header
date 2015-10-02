@@ -64,7 +64,7 @@ export default class ReactListView extends Component {
     // Retrieve all instance of headers and store position info
     
     let instances = new Set();
-    this.state._instances.forEach((k)=>{
+    this.state._instances.listHeaders.forEach(k => {
       instances.add(new HeaderPosInfo(
         k, 
         k.refs.header.getDOMNode().offsetTop,
@@ -81,10 +81,10 @@ export default class ReactListView extends Component {
   }
 
   initStickyHeaders () {
-    let instances = this.refsToArray(this, 'ListHeader');
+    let listHeaders = this.refsToArray(this, 'ListHeader');
 
     this.setState({
-      _instances: Object.assign(this.state._instances, { instances })
+      _instances: Object.assign(this.state._instances, { listHeaders })
     });
 
     this.initHeaderPositions();
@@ -102,7 +102,7 @@ export default class ReactListView extends Component {
   onScroll() {
     
     // update current header positions and apply fixed positions to the top one
-    console.log(this.state._positionMap);
+    console.log(this.state._instances.listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top);
     
   }
 
