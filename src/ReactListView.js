@@ -3,17 +3,11 @@ import ListHeader from './lib/ListHeader';
 import ListItems from './lib/ListItems';
 
 const styles = {
-
   outerDiv: {
-    'height': '400px',
-    'overflowY': 'auto',
-    'outline': '1px dashed red',
-    'width': '40%'
-  },
-
-  fixedPos: {
-    'position': 'fixed',
-    'margin-top': '8px'
+    height: '400px',
+    overflowY: 'auto',
+    outline: '1px dashed red',
+    width: '40%'
   }
 };
 
@@ -83,10 +77,21 @@ export default class ReactListView extends Component {
     //console.log(this.state._instances.listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top);
     this.state._instances.listHeaders.forEach(c => {
       let currentNode = c.refs.header.getDOMNode();
-      if(currentNode.getBoundingClientRect().top < 8) {
+      if(currentNode.getBoundingClientRect().top <= 8) {
+
+        // apply fixed position
         currentNode.style.position = 'fixed';
         currentNode.style.width = '300px';
         currentNode.style.height = '20px';
+        currentNode.style.top = '0';
+
+      } else {
+
+
+        console.log(currentNode.style.position);
+        if(currentNode.style.position == 'fixed') {
+          currentNode.style.position = 'absolute';
+        }
       }
     });
   } 
