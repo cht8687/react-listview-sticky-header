@@ -8,6 +8,13 @@ const styles = {
     overflowY: 'auto',
     outline: '1px dashed red',
     width: '40%'
+  },
+
+  fixedPosition: {
+    position : 'fixed',
+    width : '300px',
+    height : '20px',
+    top : '20'
   }
 };
 
@@ -75,23 +82,21 @@ export default class ReactListView extends Component {
     
     // update current header positions and apply fixed positions to the top one
     //console.log(this.state._instances.listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top);
+    
     this.state._instances.listHeaders.forEach(c => {
       let currentNode = c.refs.header.getDOMNode();
       if(currentNode.getBoundingClientRect().top <= 8) {
 
         // apply fixed position
-        currentNode.style.position = 'fixed';
-        currentNode.style.width = '300px';
-        currentNode.style.height = '20px';
-        currentNode.style.top = '0';
+        Object.assign(currentNode.style, styles.fixedPosition );
 
       } else {
 
 
-        console.log(currentNode.style.position);
-        if(currentNode.style.position == 'fixed') {
-          currentNode.style.position = 'absolute';
-        }
+        // console.log(currentNode.style.position);
+        // if(currentNode.style.position == 'fixed') {
+        //   currentNode.style.position = 'absolute';
+        // }
       }
     });
   } 
