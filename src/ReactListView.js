@@ -13,8 +13,7 @@ const styles = {
   fixedPosition: {
     position : 'fixed',
     width : '300px',
-    height : '20px',
-    top : '20'
+    height : '20px'
   }
 };
 
@@ -35,7 +34,8 @@ export default class ReactListView extends Component {
 
     this.state = {
       _instances:{},
-      events:['scroll', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll', 'resize', 'touchmove', 'touchend']
+      events:['scroll', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll', 'resize', 'touchmove', 'touchend'],
+      _headerFixedPosition:''
     }
 
   }
@@ -64,8 +64,14 @@ export default class ReactListView extends Component {
   initStickyHeaders () {
     let listHeaders = this.refsToArray(this, 'ListHeader');
 
+    //console.log(listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top);
+
     this.setState({
-      _instances: Object.assign(this.state._instances, { listHeaders })
+      _headerFixedPosition: listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top
+    });
+
+    this.setState({
+      _instances: Object.assign(this.state._instances, {listHeaders})
     });
 
     // Register events listeners with the listview div
@@ -81,17 +87,19 @@ export default class ReactListView extends Component {
   onScroll() {
     
     // update current header positions and apply fixed positions to the top one
-    //console.log(this.state._instances.listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top);
     
     this.state._instances.listHeaders.forEach(c => {
       let currentNode = c.refs.header.getDOMNode();
-      if(currentNode.getBoundingClientRect().top <= 8) {
+      if(currentNode.getBoundingClientRect().top <= this.state._headerFixedPosition) {
 
-        // apply fixed position
-        Object.assign(currentNode.style, styles.fixedPosition );
+        // apply fixed position style
+        Object.assign(currentNode.style, styles.fixedPosition);
+
+        // apply top value
+        currentNode.style.top = this.state._headerFixedPosition;
+
 
       } else {
-
 
         // console.log(currentNode.style.position);
         // if(currentNode.style.position == 'fixed') {
