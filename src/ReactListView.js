@@ -33,8 +33,9 @@ export default class ReactListView extends Component {
     super(props);
 
     this.state = {
-      _instances:{},
+      _instances: {},
       events:['scroll', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll', 'resize', 'touchmove', 'touchend'],
+      _firstChildWrapper: '',
       _headerFixedPosition:''
     }
 
@@ -65,6 +66,12 @@ export default class ReactListView extends Component {
     let listHeaders = this.refsToArray(this, 'ListHeader');
 
     //console.log(listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top);
+    
+    console.log(listHeaders[0].refs.followWrap.getDOMNode().getBoundingClientRect().top);
+
+    this.setState({
+      _firstChildWrapper: listHeaders[0].refs.followWrap
+    });
 
     this.setState({
       _headerFixedPosition: listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top
@@ -88,8 +95,12 @@ export default class ReactListView extends Component {
     
     // update current header positions and apply fixed positions to the top one
     
-    this.state._instances.listHeaders.forEach(c => {
+    console.log(this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top);
+    
+    this.state._instances.listHeaders.forEach((c) => {
+
       let currentNode = c.refs.header.getDOMNode();
+      
       if(currentNode.getBoundingClientRect().top <= this.state._headerFixedPosition) {
 
         // apply fixed position style
@@ -99,12 +110,11 @@ export default class ReactListView extends Component {
         currentNode.style.top = this.state._headerFixedPosition;
 
 
+
       } else {
 
-        // console.log(currentNode.style.position);
-        // if(currentNode.style.position == 'fixed') {
-        //   currentNode.style.position = 'absolute';
-        // }
+
+        
       }
     });
   } 
