@@ -23,7 +23,6 @@ export default class ReactListView extends Component {
     headerAttName: React.PropTypes.string.isRequired,
     itemsAttName: React.PropTypes.string.isRequired,
     events: React.PropTypes.array,
-    _instances: React.PropTypes.array,
     _positionMap: React.PropTypes.object,
     _topPos: React.PropTypes.string,
     _topWrapper: React.PropTypes.object
@@ -33,10 +32,10 @@ export default class ReactListView extends Component {
     super(props);
 
     this.state = {
-      _instances: {},
       events:['scroll', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll', 'resize', 'touchmove', 'touchend'],
       _firstChildWrapper: '',
-      _headerFixedPosition:''
+      _headerFixedPosition:'',
+      _instances: {}
     }
 
   }
@@ -66,8 +65,19 @@ export default class ReactListView extends Component {
     let listHeaders = this.refsToArray(this, 'ListHeader');
 
     //console.log(listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top);
+    //console.log(listHeaders[0].refs.followWrap.getDOMNode().getBoundingClientRect().top);
     
-    console.log(listHeaders[0].refs.followWrap.getDOMNode().getBoundingClientRect().top);
+    let _originalPositions = listHeaders.map(l => {
+      let headerAndPosInfo = {
+        headerObj: l,
+        originalPosition: l.refs.header.getDOMNode().getBoundingClientRect().top
+      };
+      return headerAndPosInfo;
+    });
+    
+    this.setState({
+      _instances: Object.assign(this.state._instances, {_originalPositions})
+    });
 
     this.setState({
       _firstChildWrapper: listHeaders[0].refs.followWrap
@@ -77,9 +87,6 @@ export default class ReactListView extends Component {
       _headerFixedPosition: listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top
     });
 
-    this.setState({
-      _instances: Object.assign(this.state._instances, {listHeaders})
-    });
 
     // Register events listeners with the listview div
     this.state.events.forEach(type => {
@@ -95,13 +102,19 @@ export default class ReactListView extends Component {
     
     // update current header positions and apply fixed positions to the top one
     
-    console.log(this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top);
+    // console.log(this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top);
     
-    this.state._instances.listHeaders.forEach((c) => {
+    let currentWindowScrollTop = 2 * this.state._headerFixedPosition - this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top;
+    
+    console.log(this.state._instances._originalPositions);
 
-      let currentNode = c.refs.header.getDOMNode();
-      
-      if(currentNode.getBoundingClientRect().top <= this.state._headerFixedPosition) {
+    this.state._instances._originalPositions.forEach((c, index) => {
+
+      let currentNode = c.headerObj.refs.header.getDOMNode();
+      let nextNode = null;
+      // let prevNode = null;
+
+      if(c.originalPosition <= currentWindowScrollTop) {
 
         // apply fixed position style
         Object.assign(currentNode.style, styles.fixedPosition);
@@ -109,12 +122,39 @@ export default class ReactListView extends Component {
         // apply top value
         currentNode.style.top = this.state._headerFixedPosition;
 
+        if(index < this.state._instances._originalPositions.length - 1) {
+          nextNode = this.state._instances._originalPositions[index + 1]; 
+        }
 
+        console.log('currentTop: ' + currentWindowScrollTop);
+        console.log('cur: ' + currentNode.getBoundingClientRect().top);
+        console.log('next: ' + nextNode.originalPosition);
+      
+        if(currentNode.getBoundingClientRect().top >= nextNode.originalPosition) {
+          currentNode.style.position = 'absolute';
+          console.log('originalPosition: '+nextNode.originalPosition);
+          currentNode.style.top = nextNode.originalPosition;
+        }
 
       } else {
 
+        currentNode.style.position = 'relative';
+        // if(index >= 1) {
+        //   if(this.state._instances._originalPositions[index - 1] != null) {
+        //     prevNode = this.state._instances._originalPositions[index - 1];
+        //   }
+        // }
 
-        
+        // if(prevNode != null) {   
+        //   console.log(prevNode);     
+        //   if(prevNode.headerObj.refs.header.getDOMNode().style.position != undefined) {
+        //     //prevNode.headerObj.refs.header.getDOMNode().style.position = 'relative';
+        //   }
+        // }
+
+        // if(currentWindowScrollTop <= c.originalPosition) {
+        //   prevNode.headerObj.refs.header.getDOMNode().style.position = '';
+        // }
       }
     });
   } 
