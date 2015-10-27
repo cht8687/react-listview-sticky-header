@@ -76,17 +76,10 @@ export default class ReactListView extends Component {
     });
     
     this.setState({
-      _instances: Object.assign(this.state._instances, {_originalPositions})
-    });
-
-    this.setState({
-      _firstChildWrapper: listHeaders[0].refs.followWrap
-    });
-
-    this.setState({
+      _instances: Object.assign(this.state._instances, {_originalPositions}),
+      _firstChildWrapper: listHeaders[0].refs.followWrap,
       _headerFixedPosition: listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top
     });
-
 
     // Register events listeners with the listview div
     this.state.events.forEach(type => {
@@ -101,43 +94,30 @@ export default class ReactListView extends Component {
   onScroll() {
     
     // update current header positions and apply fixed positions to the top one
-    
     // console.log(this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top);
     
     let currentWindowScrollTop = 2 * this.state._headerFixedPosition - this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top;
-    
     console.log(this.state._instances._originalPositions);
-
     this.state._instances._originalPositions.forEach((c, index) => {
-
       let currentNode = c.headerObj.refs.header.getDOMNode();
       let nextNode = null;
-      // let prevNode = null;
-
       if(c.originalPosition <= currentWindowScrollTop) {
-
         // apply fixed position style
         Object.assign(currentNode.style, styles.fixedPosition);
-
         // apply top value
         currentNode.style.top = this.state._headerFixedPosition;
-
         if(index < this.state._instances._originalPositions.length - 1) {
           nextNode = this.state._instances._originalPositions[index + 1]; 
         }
-
         console.log('currentTop: ' + currentWindowScrollTop);
         console.log('cur: ' + currentNode.getBoundingClientRect().top);
         console.log('next: ' + nextNode.originalPosition);
-      
         if(currentNode.getBoundingClientRect().top >= nextNode.originalPosition) {
           currentNode.style.position = 'absolute';
           console.log('originalPosition: '+nextNode.originalPosition);
           currentNode.style.top = nextNode.originalPosition;
         }
-
       } else {
-
         currentNode.style.position = 'relative';
         // if(index >= 1) {
         //   if(this.state._instances._originalPositions[index - 1] != null) {
