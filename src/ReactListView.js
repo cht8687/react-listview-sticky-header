@@ -143,7 +143,7 @@ export default class ReactListView extends Component {
     const { data, headerAttName, itemsAttName } = this.props;
     let _refi = 0;
     let makeRef = () => {
-      return 'ListHeader-' + (_refi++);
+      return `ListHeader-${_refi++}`;
     };
 
     return (
