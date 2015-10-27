@@ -18,6 +18,8 @@ npm install
 ```bash
 webpack-dev-server
 ```
+`tips:` If you have already had webpack-dev-server running, you might have EADDRINUSE error, please ensure the port is not in use.
+
 #Then 
 
 ```bash

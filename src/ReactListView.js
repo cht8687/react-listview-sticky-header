@@ -90,27 +90,20 @@ export default class ReactListView extends Component {
   onScroll() {
     
     // update current header positions and apply fixed positions to the top one
-    // console.log(this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top);
     let currentWindowScrollTop = 2 * this.state._headerFixedPosition - this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top;
-    console.log(this.state._instances._originalPositions);
     this.state._instances._originalPositions.forEach((c, index) => {
       let currentNode = c.headerObj.refs.header.getDOMNode();
       let nextNode = null;
       if(c.originalPosition <= currentWindowScrollTop) {
         // apply top value
         styles.fixedPosition.top = `${this.state._headerFixedPosition}px`;
-        console.log("look" + JSON.stringify(styles.fixedPosition));
         // apply fixed position style
         Object.assign( currentNode.style, styles.fixedPosition);
         if(index < this.state._instances._originalPositions.length - 1) {
           nextNode = this.state._instances._originalPositions[index + 1]; 
         }
-        console.log('currentTop: ' + this.state._headerFixedPosition);
-        console.log('cur: ' + currentNode.getBoundingClientRect().top);
-        console.log('next: ' + nextNode.originalPosition);
         if(currentNode.getBoundingClientRect().top >= nextNode.originalPosition) {
           currentNode.style.position = 'absolute';
-          console.log('originalPosition: '+nextNode.originalPosition);
           currentNode.style.top = nextNode.originalPosition;
         }
       } else {
