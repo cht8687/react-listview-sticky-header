@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ListHeader from './lib/ListHeader';
 import ListItems from './lib/ListItems';
 
-const styles = {
+let styles = {
   outerDiv: {
     height: '400px',
     overflowY: 'auto',
@@ -13,7 +13,7 @@ const styles = {
   fixedPosition: {
     position : 'fixed',
     width : '300px',
-    height : '20px'
+    top: '0px'
   }
 };
 
@@ -63,10 +63,6 @@ export default class ReactListView extends Component {
 
   initStickyHeaders () {
     let listHeaders = this.refsToArray(this, 'ListHeader');
-
-    //console.log(listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top);
-    //console.log(listHeaders[0].refs.followWrap.getDOMNode().getBoundingClientRect().top);
-    
     let _originalPositions = listHeaders.map(l => {
       let headerAndPosInfo = {
         headerObj: l,
@@ -95,21 +91,21 @@ export default class ReactListView extends Component {
     
     // update current header positions and apply fixed positions to the top one
     // console.log(this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top);
-    
     let currentWindowScrollTop = 2 * this.state._headerFixedPosition - this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top;
     console.log(this.state._instances._originalPositions);
     this.state._instances._originalPositions.forEach((c, index) => {
       let currentNode = c.headerObj.refs.header.getDOMNode();
       let nextNode = null;
       if(c.originalPosition <= currentWindowScrollTop) {
-        // apply fixed position style
-        Object.assign(currentNode.style, styles.fixedPosition);
         // apply top value
-        currentNode.style.top = this.state._headerFixedPosition;
+        styles.fixedPosition.top = `${this.state._headerFixedPosition}px`;
+        console.log("look" + JSON.stringify(styles.fixedPosition));
+        // apply fixed position style
+        Object.assign( currentNode.style, styles.fixedPosition);
         if(index < this.state._instances._originalPositions.length - 1) {
           nextNode = this.state._instances._originalPositions[index + 1]; 
         }
-        console.log('currentTop: ' + currentWindowScrollTop);
+        console.log('currentTop: ' + this.state._headerFixedPosition);
         console.log('cur: ' + currentNode.getBoundingClientRect().top);
         console.log('next: ' + nextNode.originalPosition);
         if(currentNode.getBoundingClientRect().top >= nextNode.originalPosition) {
@@ -119,22 +115,7 @@ export default class ReactListView extends Component {
         }
       } else {
         currentNode.style.position = 'relative';
-        // if(index >= 1) {
-        //   if(this.state._instances._originalPositions[index - 1] != null) {
-        //     prevNode = this.state._instances._originalPositions[index - 1];
-        //   }
-        // }
-
-        // if(prevNode != null) {   
-        //   console.log(prevNode);     
-        //   if(prevNode.headerObj.refs.header.getDOMNode().style.position != undefined) {
-        //     //prevNode.headerObj.refs.header.getDOMNode().style.position = 'relative';
-        //   }
-        // }
-
-        // if(currentWindowScrollTop <= c.originalPosition) {
-        //   prevNode.headerObj.refs.header.getDOMNode().style.position = '';
-        // }
+        
       }
     });
   } 
