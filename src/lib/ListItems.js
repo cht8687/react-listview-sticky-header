@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 export default class ListItem extends Component {
-
   static propTypes = {
-    items: React.PropTypes.array.isRequired
+    items: PropTypes.array.isRequired
   };
 
   render() {

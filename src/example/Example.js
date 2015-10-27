@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactListView from '..';
 
-class App extends React.Component {
-
+class App extends Component {
   static propTypes = {
-    data: React.PropTypes.array.isRequired
+    data: PropTypes.array.isRequired
   };
 
   render() {
    const { data } = this.props;
     return (
-      <ReactListView data={data} 
-                     headerAttName="headerName"
-                     itemsAttName="items" />
+      <ReactListView 
+        data={data} 
+        headerAttName="headerName"
+        itemsAttName="items" 
+      />
     );
   }
 }

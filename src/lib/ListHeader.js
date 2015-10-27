@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component, PropTypes } from 'react';
 
 const styles = {
   width: '50%',
@@ -8,8 +8,8 @@ const styles = {
 };
 
 export default class ListHeader extends Component {
- static propTypes = {
-    header: React.PropTypes.string.isRequired
+  static propTypes = {
+    header: PropTypes.string.isRequired
   };
 
   render() {
