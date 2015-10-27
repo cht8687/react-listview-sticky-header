@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import ListHeader from './lib/ListHeader';
 import ListItems from './lib/ListItems';
 
@@ -19,13 +19,13 @@ const styles = {
 
 export default class ReactListView extends Component {
   static propTypes = {
-    data: React.PropTypes.array.isRequired,
-    headerAttName: React.PropTypes.string.isRequired,
-    itemsAttName: React.PropTypes.string.isRequired,
-    events: React.PropTypes.array,
-    _positionMap: React.PropTypes.object,
-    _topPos: React.PropTypes.string,
-    _topWrapper: React.PropTypes.object
+    data: PropTypes.array.isRequired,
+    headerAttName: PropTypes.string.isRequired,
+    itemsAttName: PropTypes.string.isRequired,
+    events: PropTypes.array,
+    _positionMap: PropTypes.object,
+    _topPos: PropTypes.string,
+    _topWrapper: PropTypes.object
   }
 
   constructor(props) {
