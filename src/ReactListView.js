@@ -3,44 +3,41 @@ import ListHeader from './lib/ListHeader';
 import ListItems from './lib/ListItems';
 
 const styles = {
-  'height': '400px',
-  'overflowY': 'auto',
-  'outline': '1px dashed red',
-  'width': '40%'
+  outerDiv: {
+    height: '400px',
+    overflowY: 'auto',
+    outline: '1px dashed red',
+    width: '40%'
+  },
+
+  fixedPosition: {
+    position : 'fixed',
+    width : '300px',
+    height : '20px'
+  }
 };
 
-class HeaderPosInfo {
-  constructor(headerObj, originalPosition, originalHeight) {
-    this.headerObj = headerObj;
-    this.originalPosition = originalPosition;
-    this.originalHeight = originalHeight; 
-  }
-}
-
 export default class ReactListView extends Component {
-  static defaultProps = {
-    events: ['scroll', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll', 'resize', 'touchmove', 'touchend'],
-    _instances:[],
-    _positionMap: new Set(),
-    _topPos:'',
-    _topWrapper:''
-  }
-
   static propTypes = {
     data: React.PropTypes.array.isRequired,
     headerAttName: React.PropTypes.string.isRequired,
     itemsAttName: React.PropTypes.string.isRequired,
     events: React.PropTypes.array,
-    _instances: React.PropTypes.array,
     _positionMap: React.PropTypes.object,
     _topPos: React.PropTypes.string,
     _topWrapper: React.PropTypes.object
   }
 
-  state = {
-    _instances: this.props._instances,
-    _positionMap: this.props._positionMap,
-    events: this.props.events
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      events:['scroll', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll', 'resize', 'touchmove', 'touchend'],
+      _firstChildWrapper: '',
+      _headerFixedPosition:'',
+      _instances: {}
+    }
+
   }
 
   componentDidMount() {
@@ -64,35 +61,32 @@ export default class ReactListView extends Component {
     }
   }
 
-  initHeaderPositions() {
-    // Retrieve all instance of headers and store position info
-    
-    let instances = new Set();
-    this.state._instances.forEach((k)=>{
-      instances.add(new HeaderPosInfo(
-        k, 
-        k.refs.header.getDOMNode().offsetTop,
-        k.refs.header.getDOMNode().offsetHeight
-      ))
-    });
-
-    // set state
-    this.setState({
-        _positionMap: Object.assign(this.state._positionMap, 
-          instances
-        )
-    });
-  }
-
   initStickyHeaders () {
-    let instances = this.refsToArray(this, 'ListHeader');
+    let listHeaders = this.refsToArray(this, 'ListHeader');
+
+    //console.log(listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top);
+    //console.log(listHeaders[0].refs.followWrap.getDOMNode().getBoundingClientRect().top);
+    
+    let _originalPositions = listHeaders.map(l => {
+      let headerAndPosInfo = {
+        headerObj: l,
+        originalPosition: l.refs.header.getDOMNode().getBoundingClientRect().top
+      };
+      return headerAndPosInfo;
+    });
+    
     this.setState({
-      _instances: Object.assign(this.state._instances, {
-        instances
-      })
+      _instances: Object.assign(this.state._instances, {_originalPositions})
     });
 
-    this.initHeaderPositions();
+    this.setState({
+      _firstChildWrapper: listHeaders[0].refs.followWrap
+    });
+
+    this.setState({
+      _headerFixedPosition: listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top
+    });
+
 
     // Register events listeners with the listview div
     this.state.events.forEach(type => {
@@ -107,9 +101,63 @@ export default class ReactListView extends Component {
   onScroll() {
     
     // update current header positions and apply fixed positions to the top one
-    console.log(this.props._positionMap[1]);
     
-  }
+    // console.log(this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top);
+    
+    let currentWindowScrollTop = 2 * this.state._headerFixedPosition - this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top;
+    
+    console.log(this.state._instances._originalPositions);
+
+    this.state._instances._originalPositions.forEach((c, index) => {
+
+      let currentNode = c.headerObj.refs.header.getDOMNode();
+      let nextNode = null;
+      // let prevNode = null;
+
+      if(c.originalPosition <= currentWindowScrollTop) {
+
+        // apply fixed position style
+        Object.assign(currentNode.style, styles.fixedPosition);
+
+        // apply top value
+        currentNode.style.top = this.state._headerFixedPosition;
+
+        if(index < this.state._instances._originalPositions.length - 1) {
+          nextNode = this.state._instances._originalPositions[index + 1]; 
+        }
+
+        console.log('currentTop: ' + currentWindowScrollTop);
+        console.log('cur: ' + currentNode.getBoundingClientRect().top);
+        console.log('next: ' + nextNode.originalPosition);
+      
+        if(currentNode.getBoundingClientRect().top >= nextNode.originalPosition) {
+          currentNode.style.position = 'absolute';
+          console.log('originalPosition: '+nextNode.originalPosition);
+          currentNode.style.top = nextNode.originalPosition;
+        }
+
+      } else {
+
+        currentNode.style.position = 'relative';
+        // if(index >= 1) {
+        //   if(this.state._instances._originalPositions[index - 1] != null) {
+        //     prevNode = this.state._instances._originalPositions[index - 1];
+        //   }
+        // }
+
+        // if(prevNode != null) {   
+        //   console.log(prevNode);     
+        //   if(prevNode.headerObj.refs.header.getDOMNode().style.position != undefined) {
+        //     //prevNode.headerObj.refs.header.getDOMNode().style.position = 'relative';
+        //   }
+        // }
+
+        // if(currentWindowScrollTop <= c.originalPosition) {
+        //   prevNode.headerObj.refs.header.getDOMNode().style.position = '';
+        // }
+      }
+    });
+  } 
 
   render() {
     const { data, headerAttName, itemsAttName } = this.props;
@@ -119,19 +167,21 @@ export default class ReactListView extends Component {
     };
 
     return (
-      <div ref="listview" style={styles}>
+      <div ref="listview" style={styles.outerDiv}>
+      <ul>
       {
         Object.keys(data).map(k => {
         const header = data[k][headerAttName];
         const items  = data[k][itemsAttName];
           return (
-            <ul key={k}>     
+            <li key={k}>     
               <ListHeader ref={makeRef()} header={header} />
               <ListItems  items={items} />
-            </ul>
+            </li>
           );
         })
       }
+      </ul>
       </div>
     );
   }
