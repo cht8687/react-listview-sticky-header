@@ -23,7 +23,6 @@ export default class ReactListView extends Component {
       _headerFixedPosition:'',
       _instances: {}
     }
-
   }
 
   componentDidMount() {
@@ -38,16 +37,16 @@ export default class ReactListView extends Component {
 
   }
 
-  refsToArray(ctx, prefix){
+  refsToArray(ctx, prefix) {
     let results = [];
-    for (let i=0;;i++){
+    for (let i=0;;i++) {
       let ref = ctx.refs[prefix + '-' + String(i)];
       if (ref) results.push(ref);
       else return results;
     }
   }
 
-  initStickyHeaders () {
+  initStickyHeaders() {
     let listHeaders = this.refsToArray(this, 'ListHeader');
     let _originalPositions = listHeaders.map(l => {
       let headerAndPosInfo = {
@@ -113,12 +112,13 @@ export default class ReactListView extends Component {
         Object.keys(data).map(k => {
         const header = data[k][headerAttName];
         const items  = data[k][itemsAttName];
-          return (
-            <li key={k}>     
-              <ListHeader ref={makeRef()} header={header} />
-              <ListItems  items={items} />
-            </li>
-          );
+        const { listHeader } = this.props.styles;
+        return (
+          <li key={k}>     
+            <ListHeader ref={makeRef()} header={header} styles={listHeader} />
+            <ListItems  items={items} />
+          </li>
+        );
         })
       }
       </ul>
