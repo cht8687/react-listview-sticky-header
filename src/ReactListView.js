@@ -2,26 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import ListHeader from './lib/ListHeader';
 import ListItems from './lib/ListItems';
 
-let styles = {
-  outerDiv: {
-    height: '400px',
-    overflowY: 'auto',
-    outline: '1px dashed red',
-    width: '40%'
-  },
-
-  fixedPosition: {
-    position : 'fixed',
-    width : '300px',
-    top: '0px'
-  }
-};
-
 export default class ReactListView extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
     headerAttName: PropTypes.string.isRequired,
     itemsAttName: PropTypes.string.isRequired,
+    styles: PropTypes.object.isRequired,
     events: PropTypes.array,
     _positionMap: PropTypes.object,
     _topPos: PropTypes.string,
@@ -96,9 +82,9 @@ export default class ReactListView extends Component {
       let nextNode = null;
       if(c.originalPosition <= currentWindowScrollTop) {
         // apply top value
-        styles.fixedPosition.top = `${this.state._headerFixedPosition}px`;
+        this.props.styles.fixedPosition.top = `${this.state._headerFixedPosition}px`;
         // apply fixed position style
-        Object.assign( currentNode.style, styles.fixedPosition);
+        Object.assign( currentNode.style, this.props.styles.fixedPosition);
         if(index < this.state._instances._originalPositions.length - 1) {
           nextNode = this.state._instances._originalPositions[index + 1]; 
         }
@@ -121,7 +107,7 @@ export default class ReactListView extends Component {
     };
 
     return (
-      <div ref="listview" style={styles.outerDiv}>
+      <div ref="listview" style={this.props.styles.outerDiv}>
       <ul>
       {
         Object.keys(data).map(k => {

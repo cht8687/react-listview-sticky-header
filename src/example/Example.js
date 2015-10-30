@@ -1,6 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import ReactListView from '..';
 
+let styles = {
+  outerDiv: {
+    height: '400px',
+    overflowY: 'auto',
+    outline: '1px dashed blue',
+    width: '40%'
+  },
+
+  fixedPosition: {
+    position : 'fixed',
+    width : '300px',
+    top: '0px'
+  }
+};
+
 class App extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired
@@ -13,6 +28,7 @@ class App extends Component {
         data={data} 
         headerAttName="headerName"
         itemsAttName="items" 
+        styles={styles}
       />
     );
   }
@@ -131,4 +147,3 @@ const DATALIST = [
 ];
 
 React.render(<App data= {DATALIST} />, document.body);
-
