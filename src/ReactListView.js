@@ -113,10 +113,18 @@ export default class ReactListView extends Component {
         const header = data[k][headerAttName];
         const items  = data[k][itemsAttName];
         const { listHeader } = this.props.styles;
+        const { listItems } = this.props.styles;
         return (
           <li key={k}>     
-            <ListHeader ref={makeRef()} header={header} styles={listHeader} />
-            <ListItems  items={items} />
+            <ListHeader 
+              ref={makeRef()} 
+              header={header} 
+              styles={listHeader} 
+            />
+            <ListItems 
+             items={items} 
+             styles={listItems}
+            />
           </li>
         );
         })

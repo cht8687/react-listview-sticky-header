@@ -20,7 +20,11 @@ let styles = {
     height: '20px',
     background: 'green',
     color: 'white'
-  }
+  },
+
+  listItems: {
+    color: 'blue'
+  },
 };
 
 class App extends Component {
