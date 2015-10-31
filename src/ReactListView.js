@@ -79,9 +79,10 @@ export default class ReactListView extends Component {
     this.state._instances._originalPositions.forEach((c, index) => {
       let currentNode = c.headerObj.refs.header.getDOMNode();
       let nextNode = null;
-      if(c.originalPosition <= currentWindowScrollTop) {
+      if(c.originalPosition < currentWindowScrollTop) {
         // apply top value
         this.props.styles.fixedPosition.top = `${this.state._headerFixedPosition}px`;
+        console.log(this.state._headerFixedPosition);
         // apply fixed position style
         Object.assign( currentNode.style, this.props.styles.fixedPosition);
         if(index < this.state._instances._originalPositions.length - 1) {
