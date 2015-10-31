@@ -7,9 +7,12 @@ let styles = {
     overflowY: 'auto',
     outline: '1px dashed blue',
     width: '40%',
+
   },
+  
   ul: {
-    margin: '0px'
+    margin: '0px',
+    "list-style-type": 'none'
   },
 
   fixedPosition: {
