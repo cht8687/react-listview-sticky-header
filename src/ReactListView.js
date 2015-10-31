@@ -93,27 +93,26 @@ export default class ReactListView extends Component {
         }
       } else {
         currentNode.style.position = 'relative';
-        
+        currentNode.style.top = '0';
       }
     });
   } 
 
   render() {
     const { data, headerAttName, itemsAttName } = this.props;
+    const { styles: {outerDiv, ul, listHeader, listItems, li} } = this.props;
     let _refi = 0;
     let makeRef = () => {
       return `ListHeader-${_refi++}`;
     };
 
     return (
-      <div ref="listview" style={this.props.styles.outerDiv}>
-      <ul>
+      <div ref="listview" style={outerDiv}>
+      <ul style={ul}>
       {
         Object.keys(data).map(k => {
         const header = data[k][headerAttName];
         const items  = data[k][itemsAttName];
-        const { listHeader } = this.props.styles;
-        const { listItems } = this.props.styles;
         return (
           <li key={k}>     
             <ListHeader 
