@@ -55,7 +55,7 @@ export default class ReactListView extends Component {
       };
       return headerAndPosInfo;
     });
-    
+   
     this.setState({
       _instances: Object.assign(this.state._instances, {_originalPositions}),
       _firstChildWrapper: listHeaders[0].refs.followWrap,
@@ -80,7 +80,7 @@ export default class ReactListView extends Component {
       const currentHeaderHeight = parseInt(currentNode.style.height, 10);
       let nextNode, topPos = null;
       if(index < this.state._instances._originalPositions.length - 1) {
-        nextNode = this.state._instances._originalPositions[index + 1]; 
+        nextNode = this.state._instances._originalPositions[index + 1];
       }
       if(nextNode) {
         topPos = -(currentWindowScrollTop + (index + 2)*currentHeaderHeight - nextNode.originalPosition - this.state._headerFixedPosition);
@@ -88,7 +88,7 @@ export default class ReactListView extends Component {
       if(c.originalPosition < currentWindowScrollTop + this.state._headerFixedPosition + currentHeaderHeight) {
         Object.assign(currentNode.style, this.props.styles.fixedPosition);
         // apply top value
-        this.props.styles.fixedPosition.top = `${this.state._headerFixedPosition}px`;
+        currentNode.style.top = `${this.state._headerFixedPosition}px`;
         if(currentWindowScrollTop + (index + 2)*currentHeaderHeight > nextNode.originalPosition) {
           currentNode.style.position = 'absolute';
           currentNode.style.top = `${topPos}px`;
@@ -97,7 +97,7 @@ export default class ReactListView extends Component {
         currentNode.style.position = '';
       }
     });
-  } 
+  }
 
   render() {
     const { data, headerAttName, itemsAttName } = this.props;
@@ -115,14 +115,14 @@ export default class ReactListView extends Component {
         const header = data[k][headerAttName];
         const items  = data[k][itemsAttName];
         return (
-          <li li={li} key={k}>     
-            <ListHeader 
-              ref={makeRef()} 
-              header={header} 
-              styles={listHeader} 
+          <li li={li} key={k}>    
+            <ListHeader
+              ref={makeRef()}
+              header={header}
+              styles={listHeader}
             />
-            <ListItems 
-             items={items} 
+            <ListItems
+             items={items}
              styles={listItems}
             />
           </li>
