@@ -73,28 +73,28 @@ export default class ReactListView extends Component {
   }
 
   onScroll() {
-    
     // update current header positions and apply fixed positions to the top one
     let currentWindowScrollTop = 2 * this.state._headerFixedPosition - this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top;
     this.state._instances._originalPositions.forEach((c, index) => {
       let currentNode = c.headerObj.refs.header.getDOMNode();
-      let nextNode = null;
-      if(c.originalPosition < currentWindowScrollTop) {
+      const currentHeaderHeight = parseInt(currentNode.style.height, 10);
+      let nextNode, topPos = null;
+      if(index < this.state._instances._originalPositions.length - 1) {
+        nextNode = this.state._instances._originalPositions[index + 1]; 
+      }
+      if(nextNode) {
+        topPos = -(currentWindowScrollTop + (index + 2)*currentHeaderHeight - nextNode.originalPosition - this.state._headerFixedPosition);
+      }
+      if(c.originalPosition < currentWindowScrollTop + this.state._headerFixedPosition + currentHeaderHeight) {
+        Object.assign(currentNode.style, this.props.styles.fixedPosition);
         // apply top value
         this.props.styles.fixedPosition.top = `${this.state._headerFixedPosition}px`;
-        console.log(this.state._headerFixedPosition);
-        // apply fixed position style
-        Object.assign( currentNode.style, this.props.styles.fixedPosition);
-        if(index < this.state._instances._originalPositions.length - 1) {
-          nextNode = this.state._instances._originalPositions[index + 1]; 
-        }
-        if(currentNode.getBoundingClientRect().top >= nextNode.originalPosition) {
+        if(currentWindowScrollTop + (index + 2)*currentHeaderHeight > nextNode.originalPosition) {
           currentNode.style.position = 'absolute';
-          currentNode.style.top = nextNode.originalPosition;
+          currentNode.style.top = `${topPos}px`;
         }
       } else {
-        currentNode.style.position = 'relative';
-        currentNode.style.top = '0';
+        currentNode.style.position = '';
       }
     });
   } 
