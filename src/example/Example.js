@@ -11,7 +11,7 @@ let styles = {
 
   ul: {
     margin: '0px',
-    "list-style-type": 'none'
+    listStyleType: 'none'
   },
 
   fixedPosition: {
