@@ -2,11 +2,11 @@
   "name": "react-listview-sticky-header",
   "version": "0.1.6",
   "description": "react listview with sticky header",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "parallelshell -w \"npm run build:lib -s\" \"npm run build:example -s\" \"npm run build:bower -s\"",
-    "prebuild": "rimraf lib example build",
-    "build:lib": "babel src --out-dir lib --source-maps --ignore src/example",
+    "prepublish": "parallelshell -w \"npm run build:dist -s\" \"npm run build:example -s\" \"npm run build:bower -s\"",
+    "prebuild": "rimraf dist example build",
+    "build:dist": "babel src --out-dir dist --source-maps --ignore src/example",
     "build:example": "webpack --config webpack.config.js"
   },
   "repository": {
@@ -17,6 +17,9 @@
     "react",
     "react-component",
     "component"
+  ],
+  "files": [
+    "dist"
   ],
   "author": "Robert Chang <cht8687@gmail.com>",
   "license": "MIT",
@@ -36,7 +39,9 @@
     "eslint-loader": "^1.0.0",
     "eslint-plugin-react": "^3.2.3",
     "html-webpack-plugin": "^1.6.1",
+    "parallelshell": "^2.0.0",
     "react-hot-loader": "^1.2.9",
+    "rimraf": "^2.4.3",
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1"
   }
