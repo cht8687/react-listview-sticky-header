@@ -1,10 +1,13 @@
 {
   "name": "react-listview-sticky-header",
-  "version": "0.1.2",
+  "version": "0.1.6",
   "description": "react listview with sticky header",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "karma start ./karma.conf.js --single-run --reports nyan"
+    "build": "parallelshell -w \"npm run build:lib -s\" \"npm run build:example -s\" \"npm run build:bower -s\"",
+    "prebuild": "rimraf lib example build",
+    "build:lib": "babel src --out-dir lib --source-maps --ignore src/example",
+    "build:example": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -36,5 +39,5 @@
     "react-hot-loader": "^1.2.9",
     "webpack": "^1.11.0",
     "webpack-dev-server": "^1.10.1"
-  },
+  }
 }

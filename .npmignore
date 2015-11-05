@@ -1,5 +1,6 @@
 /build/
 /example/
+/src/example/
 #/src/
 /reports/
 /test/
@@ -10,5 +11,5 @@
 .npmignore
 bower.json
 circle.yml
-karma.conf.js
-webpack.config.js
+/karma.conf.js
+/webpack.config.*
