@@ -47,12 +47,13 @@ const DATALIST = [
 ```
 #### `headerAttName`: PropTypes.string.isRequired
 
-headerName variable in your `data` object.
-
+variable name of header in your `data` object.
+In above example, it's `headerName`.
 
 #### `itemsAttName`: PropTypes.string.isRequired
 
-itemsAttName variable in your `data` object.
+variable name which hold items data in your `data` object.
+In above example, it's `items`.
 
 #### `itemsAttName`: PropTypes.object.isRequired
 
@@ -88,6 +89,8 @@ let styles = {
   },
 };
 ```
+
+`outerDiv`, `ul`, `fixedPosition`, `listHeader`, `listItems` are required, you can modify the CSS to meet your needs.
 
 ## Development
 
