@@ -6,9 +6,11 @@ This project is trying to achieve listview with sticky headers using React.
 
 ### npm
 
-```sh
+```
 npm install --save react-listview-sticky-header
 ```
+
+Since React is peer dependency, you need to install it manually if you haven't. 
 
 ## Usage
 
@@ -94,23 +96,23 @@ let styles = {
 
 ## Development
 
-```bash
+```
 git clone git@github.com:cht8687/react-listview-sticky-header.git
 ```
-```bash
+```
 cd react-listview-sticky-header
 ```
-```bash
+```
 npm install
 ```
-```bash
+```
 webpack-dev-server
 ```
 `tips:` If you have already had webpack-dev-server running, you might have EADDRINUSE error, please ensure the port is not in use.
 
 #Then 
 
-```bash
+```
 open http://localhost:8080/webpack-dev-server/
 ```
 
