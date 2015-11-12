@@ -15,6 +15,10 @@ npm install --save react-listview-sticky-header
 
 Since React is peer dependency, you need to install it manually if you haven't. 
 
+## Demo
+
+[http://cht8687.github.io/react-listview-sticky-header/example/](http://cht8687.github.io/react-listview-sticky-header/example/)
+
 ## Usage
 
 ```js
