@@ -2,6 +2,9 @@
 
 This project is trying to achieve listview with sticky headers using React.
 
+![React Page Click](src/example/react-listview-sticky-header.gif)
+
+
 ## Installation
 
 ### npm
