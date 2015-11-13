@@ -6,22 +6,23 @@ let styles = {
     height: '400px',
     overflowY: 'auto',
     outline: '1px dashed blue',
-    width: '40%',
+    width: '400px',
   },
 
   ul: {
     margin: '0px',
-    listStyleType: 'none'
+    listStyleType: 'none',
+    padding: '0'
   },
 
   fixedPosition: {
     position : 'fixed',
-    width : '300px',
+    width : '383px',
     top: '0px'
   },
 
   listHeader: {
-    width: '300px',
+    width: '383px',
     height: '20px',
     background: 'green',
     color: 'white'
