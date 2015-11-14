@@ -83,7 +83,7 @@ In above example, it's `headerName`.
 variable name which hold items data in your `data` object.
 In above example, it's `items`.
 
-#### `itemsAttName`: PropTypes.object.isRequired
+#### `styles`: PropTypes.object.isRequired
 
 ```js
 let styles = {
