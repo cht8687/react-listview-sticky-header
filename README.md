@@ -122,23 +122,6 @@ Then
 open http://localhost:8080/webpack-dev-server/
 ```
 
-## Q & A
-
-### Why not css `position: sticky;`
-
-Firstly, `position: sticky` is just for making the element fixed position.
-you can check in the project file 'ReactListView.js' line 96:
-
-```js
-Object.assign(currentNode.style, this.props.styles.fixedPosition);
-```
-
-this is where I apply the fixed Position to the particular element. 
-
-This project is trying to achieve the sticky effect when there are multiple elements involved. 
-You can use `position:sticky` however, to replace this line of code.  Same thing. But you still need logic to handle the effect.
-
-
 ## License
 
 MIT
