@@ -1,4 +1,4 @@
-# react listview with sticky header
+# React listview with sticky header
 
 ![React Listview sticky header](src/example/react-listview-sticky-header.gif)
 
