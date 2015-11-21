@@ -1,4 +1,5 @@
 # React listview with sticky header
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cht8687/help)
 
 ![React Listview sticky header](src/example/react-listview-sticky-header.gif)
 
