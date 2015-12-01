@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/cht8687/react-listview-sticky-header#readme",
   "peerDependencies": {
-    "react": "^0.13.3"
+    "react": "^0.14.0"
   },
   "devDependencies": {
     "babel": "^5.8.23",
@@ -46,6 +46,7 @@
     "react-hot-loader": "^1.2.9",
     "rimraf": "^2.4.3",
     "webpack": "^1.11.0",
-    "webpack-dev-server": "^1.10.1"
+    "webpack-dev-server": "^1.10.1",
+    "react-dom": "^0.14.0"
   }
 }

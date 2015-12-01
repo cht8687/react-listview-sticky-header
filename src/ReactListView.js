@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import ListHeader from './lib/ListHeader';
 import ListItems from './lib/ListItems';
 
@@ -51,7 +52,7 @@ export default class ReactListView extends Component {
     let _originalPositions = listHeaders.map(l => {
       let headerAndPosInfo = {
         headerObj: l,
-        originalPosition: l.refs.header.getDOMNode().getBoundingClientRect().top
+        originalPosition: l.refs.header.getBoundingClientRect().top
       };
       return headerAndPosInfo;
     });
@@ -59,24 +60,24 @@ export default class ReactListView extends Component {
     this.setState({
       _instances: Object.assign(this.state._instances, {_originalPositions}),
       _firstChildWrapper: listHeaders[0].refs.followWrap,
-      _headerFixedPosition: listHeaders[0].refs.header.getDOMNode().getBoundingClientRect().top
+      _headerFixedPosition: listHeaders[0].refs.header.getBoundingClientRect().top
     });
 
     // Register events listeners with the listview div
     this.state.events.forEach(type => {
       if (window.addEventListener) {
-        React.findDOMNode(this.refs.listview).addEventListener(type, this.onScroll.bind(this), false);
+        findDOMNode(this.refs.listview).addEventListener(type, this.onScroll.bind(this), false);
       } else {
-        React.findDOMNode(this.refs.listview).attachEvent('on' + type, this.onScroll.bind(this), false);
+        findDOMNode(this.refs.listview).attachEvent('on' + type, this.onScroll.bind(this), false);
       }
     });
   }
 
   onScroll() {
     // update current header positions and apply fixed positions to the top one
-    let currentWindowScrollTop = 2 * this.state._headerFixedPosition - this.state._firstChildWrapper.getDOMNode().getBoundingClientRect().top;
+    let currentWindowScrollTop = 2 * this.state._headerFixedPosition - this.state._firstChildWrapper.getBoundingClientRect().top;
     this.state._instances._originalPositions.forEach((c, index) => {
-      let currentNode = c.headerObj.refs.header.getDOMNode();
+      let currentNode = c.headerObj.refs.header;
       const currentHeaderHeight = parseInt(currentNode.style.height, 10);
       let nextNode, topPos = null;
       let ignoreCheck = false;
@@ -116,27 +117,27 @@ export default class ReactListView extends Component {
 
     return (
       <div ref="listview" style={outerDiv}>
-      <ul style={ul}>
-      {
-        Object.keys(data).map(k => {
-        const header = data[k][headerAttName];
-        const items  = data[k][itemsAttName];
-        return (
-          <li li={li} key={k}>    
-            <ListHeader
-              ref={makeRef()}
-              header={header}
-              styles={listHeader}
-            />
-            <ListItems
-             items={items}
-             styles={listItems}
-            />
-          </li>
-        );
-        })
-      }
-      </ul>
+        <ul style={ul}>
+        {
+          Object.keys(data).map(k => {
+          const header = data[k][headerAttName];
+          const items  = data[k][itemsAttName];
+          return (
+            <li li={li} key={k}>    
+              <ListHeader
+                ref={makeRef()}
+                header={header}
+                styles={listHeader}
+              />
+              <ListItems
+               items={items}
+               styles={listItems}
+              />
+            </li>
+          );
+          })
+        }
+        </ul>
       </div>
     );
   }

@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import { render } from 'react-dom';
 import ReactListView from '..';
+import { DATA } from './data';
 
 let styles = {
   outerDiv: {
@@ -51,116 +53,8 @@ class App extends Component {
   }
 }
 
-const DATALIST = [
-  {
-    headerName : "ListA",
-    items : [{
-      title : "items1"
-    }, {
-      title : "items2"
-    }, {
-      title : "items3"
-    },{
-      title : "items4"
-    },{
-      title : "items5"
-    },{
-      title : "items6"
-    }]
-  }, {
-    headerName : "ListB",
-    items : [{
-      title : "items1"
-    }, {
-      title : "items2"
-    }, {
-      title : "items3"
-    },{
-      title : "items4"
-    },{
-      title : "items5"
-    },{
-      title : "items6"
-    }]
-  },{
-    headerName : "ListC",
-    items : [{
-      title : "items1"
-    }, {
-      title : "items2"
-    }, {
-      title : "items3"
-    },{
-      title : "items4"
-    },{
-      title : "items5"
-    },{
-      title : "items6"
-    }]
-  },{
-    headerName : "ListD",
-    items : [{
-      title : "items1"
-    }, {
-      title : "items2"
-    }, {
-      title : "items3"
-    },{
-      title : "items4"
-    },{
-      title : "items5"
-    },{
-      title : "items6"
-    }]
-  },{
-    headerName : "ListE",
-    items : [{
-      title : "items1"
-    }, {
-      title : "items2"
-    }, {
-      title : "items3"
-    },{
-      title : "items4"
-    },{
-      title : "items5"
-    },{
-      title : "items6"
-    }]
-  },{
-    headerName : "ListF",
-    items : [{
-      title : "items1"
-    }, {
-      title : "items2"
-    }, {
-      title : "items3"
-    }]
-  },{
-    headerName : "ListG",
-    items : [{
-      title : "items1"
-    }, {
-      title : "items2"
-    }, {
-      title : "items3"
-    },{
-      title : "items4"
-    },{
-      title : "items5"
-    },{
-      title : "items6"
-    }]
-  },{
-    headerName : "ListH",
-    items : [{
-      title : "items1"
-    }, {
-      title : "items2"
-    }, {
-      title : "items3"
-    }]
-  }
-];
+const appRoot = document.createElement('div');
+appRoot.id = 'app';
+document.body.appendChild(appRoot);
 
-React.render(<App data= {DATALIST} />, document.body);
+render(<App data= {DATA} />, appRoot);
