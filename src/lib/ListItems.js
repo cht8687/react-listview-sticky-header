@@ -11,9 +11,9 @@ export default class ListItem extends Component {
     return (
       <span>
       {
-        Object.keys(items).map(index => {
+        [...items].map((item, index) => {
           return (
-            <span key={index} style={styles}>{items[index]}<br /></span>
+            <span key={index} style={styles}>{item.title}<br /></span>
           );
         })
       }
