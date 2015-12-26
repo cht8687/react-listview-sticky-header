@@ -8,8 +8,8 @@
          alt="NPM Version">
   </a>
 
-  <a href="https://coveralls.io/r/cht8687/react-listview-sticky-header">
-    <img src="https://img.shields.io/coveralls/cht8687/react-listview-sticky-header.svg?style=flat-square"
+  <a href="https://coveralls.io/repos/cht8687/react-listview-sticky-header/badge.svg?branch=master&service=github">
+    <img src="https://coveralls.io/github/cht8687/react-listview-sticky-header?branch=master"
          alt="Coverage Status">
   </a>
 
