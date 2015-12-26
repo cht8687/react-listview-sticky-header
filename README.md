@@ -1,5 +1,44 @@
-# React listview with sticky header
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cht8687/help)
+
+<big><h1 align="center">React listview with sticky header</h1></big>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-listview-sticky-header">
+    <img src="https://img.shields.io/npm/v/react-listview-sticky-header.svg?style=flat-square"
+         alt="NPM Version">
+  </a>
+
+  <a href="https://coveralls.io/r/cht8687/react-listview-sticky-header">
+    <img src="https://img.shields.io/coveralls/cht8687/react-listview-sticky-header.svg?style=flat-square"
+         alt="Coverage Status">
+  </a>
+
+  <a href="https://travis-ci.org/cht8687/react-listview-sticky-header">
+    <img src="https://img.shields.io/travis/cht8687/github-trends.svg?style=flat-square"
+         alt="Build Status">
+  </a>
+
+  <a href="https://npmjs.org/package/react-listview-sticky-header">
+    <img src="http://img.shields.io/npm/dm/react-listview-sticky-header.svg?style=flat-square"
+         alt="Downloads">
+  </a>
+
+  <a href="https://david-dm.org/cht8687/react-listview-sticky-header.svg">
+    <img src="https://david-dm.org/cht8687/react-listview-sticky-header.svg?style=flat-square"
+         alt="Dependency Status">
+  </a>
+
+  <a href="https://github.com/cht8687/react-listview-sticky-header/blob/master/LICENSE">
+    <img src="https://img.shields.io/npm/l/react-listview-sticky-header.svg?style=flat-square"
+         alt="License">
+  </a>
+</p>
+
+<p align="center"><big>
+
+</big></p>
+
+
 
 ![React Listview sticky header](src/example/react-listview-sticky-header.gif)
 
