@@ -13,7 +13,7 @@
  </a>
 
   <a href="https://travis-ci.org/cht8687/react-listview-sticky-header">
-    <img src="https://img.shields.io/travis/cht8687/github-trends.svg?style=flat-square"
+    <img src="https://img.shields.io/travis/cht8687/react-listview-sticky-header.svg?style=flat-square"
          alt="Build Status">
   </a>
 
