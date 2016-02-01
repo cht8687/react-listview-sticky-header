@@ -44,6 +44,8 @@
 
 ## Installation
 
+[![Join the chat at https://gitter.im/cht8687/react-listview-sticky-header](https://badges.gitter.im/cht8687/react-listview-sticky-header.svg)](https://gitter.im/cht8687/react-listview-sticky-header?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ### npm
 
 ```
