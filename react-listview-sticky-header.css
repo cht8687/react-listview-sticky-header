@@ -1,0 +1,29 @@
+.stickyHeader-listview_outerDiv {
+  height: 400px;
+  overflow-y: auto;
+  outline: 1px dashed blue;
+  width: 400px;
+}
+
+.stickyHeader-listview_ul {
+  margin: 0px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.stickyHeader-listview_fixedPosition {
+  position : fixed;
+  width : 383px;
+  top: 0px;
+}
+
+.stickyHeader-listview_listHeader {
+  width: 383px;
+  height: 20px;
+  background: orange;
+  color: white;
+}
+
+.stickyHeader-listview_listItems {
+  color: blue;
+}
