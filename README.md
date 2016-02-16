@@ -1,8 +1,14 @@
 [![Join the chat at https://gitter.im/cht8687/react-listview-sticky-header](https://badges.gitter.im/cht8687/react-listview-sticky-header.svg)](https://gitter.im/cht8687/react-listview-sticky-header?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+
 <big><h1 align="center">React listview with sticky header</h1></big>
 
 <p align="center">
+  <a href="https://circleci.com/gh/cht8687/react-listview-sticky-header">
+    <img src="https://img.shields.io/circleci/project/BrightFlair/PHP.Gt/master.svg"
+         alt="Circle CI">
+  </a>
+
   <a href="https://www.npmjs.com/package/react-listview-sticky-header">
     <img src="https://img.shields.io/npm/v/react-listview-sticky-header.svg?style=flat-square"
          alt="NPM Version">
