@@ -5,7 +5,7 @@
 
 <p align="center">
   <a href="https://circleci.com/gh/cht8687/react-listview-sticky-header">
-    <img src="https://img.shields.io/circleci/project/BrightFlair/PHP.Gt/master.svg"
+    <img src="https://circleci.com/gh/cht8687/react-listview-sticky-header.svg?style=shield"
          alt="Circle CI">
   </a>
 
