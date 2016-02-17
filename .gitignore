@@ -20,3 +20,4 @@ node_modules
 .coveralls.yml
 /reports/
 gulpfile.js
+coverage
