@@ -30,14 +30,6 @@ export default class ReactListView extends Component {
     this.initStickyHeaders();
   }
 
-  componentWillUnmount() {
-
-  }
-
-  componentDidUpdate() {
-
-  }
-
   refsToArray(ctx, prefix) {
     let results = [];
     for (let i=0;;i++) {
