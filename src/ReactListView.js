@@ -30,6 +30,17 @@ export default class ReactListView extends Component {
     this.initStickyHeaders();
   }
 
+  componentWillUnmount(){
+     // unRegister events listeners with the listview div
+    this.state.events.forEach(type => {
+      if (window.addEventListener) {
+        findDOMNode(this.refs.listview).removeEventListener(type, this.onScroll.bind(this), false);
+      } else {
+        findDOMNode(this.refs.listview).attachEvent('on' + type, this.onScroll.bind(this), false);
+      }
+    });
+  }
+
   refsToArray(ctx, prefix) {
     let results = [];
     for (let i=0;;i++) {
