@@ -119,7 +119,7 @@ export default class ReactListView extends Component {
     };
 
     return (
-      <div ref="listview" style={outerDiv}>
+      <div ref='listview' style={outerDiv}>
         <ul style={ul}>
         {
           Object.keys(data).map(k => {

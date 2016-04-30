@@ -159,8 +159,6 @@ $ npm install
 $ webpack-dev-server
 ```
 
-*tip:* If you have already had webpack-dev-server running, you might have EADDRINUSE error, please ensure the port is not in use.
-
 Then
 
 ```
@@ -170,3 +168,7 @@ open http://localhost:8080/webpack-dev-server/
 ## License
 
 MIT
+
+
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+
