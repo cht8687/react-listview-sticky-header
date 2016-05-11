@@ -1,3 +1,3 @@
-import ReactListView from './ReactListView';
-export default ReactListView;
+import ReactListView from './ReactListView'
+export default ReactListView
 
