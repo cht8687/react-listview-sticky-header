@@ -17,9 +17,11 @@ test('----- React Component Tests: ReactListView -----', t => {
 })
 
 test('----- ReactListView state test-----', t => {
-  t.plan(1)
+  t.plan(2)
   const app = shallow(<ReactListView data={data} headerAttName='headerName'itemsAttName='items' styles={styles} />)
   t.equal(7, app.update().state('events').length, 'should have 7 events in state')
+  t.equal(5, app.update().state('_instances').length, 'should have 5 instances')
+
 })
 
 test('----- React Component Tests: ListHeader -----', t => {
