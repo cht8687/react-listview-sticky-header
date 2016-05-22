@@ -10,7 +10,7 @@ import { sinon } from 'sinon'
 
 test('----- React Component Tests: ReactListView -----', t => {
   t.plan(3)
-  const app = shallow(<ReactListView data={data} headerAttName='headerName'itemsAttName='items' styles={styles} />)
+  const app = shallow(<ReactListView data={data} headerAttName='headerName' itemsAttName='items' styles={styles} />)
   t.ok(ReactListView instanceof Function, 'should be function')
   t.equal(5, app.find(ListHeader).length, 'should have 5 list headers')
   t.equal(5, app.find(ListItems).length, 'should have 5 list items')
@@ -18,10 +18,9 @@ test('----- React Component Tests: ReactListView -----', t => {
 
 test('----- ReactListView state test-----', t => {
   t.plan(2)
-  const app = shallow(<ReactListView data={data} headerAttName='headerName'itemsAttName='items' styles={styles} />)
+  const app = shallow(<ReactListView data={data} headerAttName='headerName' itemsAttName='items' styles={styles} />)
   t.equal(7, app.update().state('events').length, 'should have 7 events in state')
-  t.equal(5, app.update().state('_instances').length, 'should have 5 instances')
-
+  t.ok(app.update().state('_instances') instanceof Object, 'should render _instances')
 })
 
 test('----- React Component Tests: ListHeader -----', t => {

@@ -20,7 +20,7 @@ let styles = {
   fixedPosition: {
     position: 'fixed',
     width: '383px',
-    top: '0px',
+    top: '0px'
   },
 
   listHeader: {
