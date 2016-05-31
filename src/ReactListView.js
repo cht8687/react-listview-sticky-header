@@ -8,11 +8,7 @@ export default class ReactListView extends Component {
     data: PropTypes.array.isRequired,
     headerAttName: PropTypes.string.isRequired,
     itemsAttName: PropTypes.string.isRequired,
-    styles: PropTypes.object.isRequired,
-    events: PropTypes.array,
-    _positionMap: PropTypes.object,
-    _topPos: PropTypes.string,
-    _topWrapper: PropTypes.object
+    styles: PropTypes.object.isRequired
   }
 
   constructor (props) {
