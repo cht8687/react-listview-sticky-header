@@ -25,7 +25,7 @@ let styles = {
 
   listHeader: {
     width: '383px',
-    height: '60px',
+    height: '27px',
     background: 'green',
     color: 'white'
   },
