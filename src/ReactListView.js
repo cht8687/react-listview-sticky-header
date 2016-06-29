@@ -73,7 +73,7 @@ export default class ReactListView extends Component {
 
   onScroll () {
     // update current header positions and apply fixed positions to the top one
-    let currentWindowScrollTop = 2 * this.state._headerFixedPosition - this.state._firstChildWrapper.getBoundingClientRect().top
+    let currentWindowScrollTop = this.state._headerFixedPosition - this.state._firstChildWrapper.getBoundingClientRect().top
     this.state._instances._originalPositions.forEach((c, index) => {
       let currentNode = c.headerObj.refs.header
       const currentHeaderHeight = parseInt(currentNode.style.height, 10)
@@ -84,7 +84,7 @@ export default class ReactListView extends Component {
         nextNode = this.state._instances._originalPositions[index + 1]
       }
       if (nextNode) {
-        topPos = -(currentWindowScrollTop + (index + 2) * currentHeaderHeight - nextNode.originalPosition - this.state._headerFixedPosition)
+        // temporily disable the clapsed effect
       }
       if (index === 0) {
         if (currentWindowScrollTop === c.originalPosition) {
@@ -92,11 +92,11 @@ export default class ReactListView extends Component {
           ignoreCheck = true
         }
       }
-      if (!ignoreCheck && (c.originalPosition) < (currentWindowScrollTop + this.state._headerFixedPosition + currentHeaderHeight * 1)) {
+      if (!ignoreCheck && (c.originalPosition) < (currentWindowScrollTop + this.state._headerFixedPosition + currentHeaderHeight)) {
         Object.assign(currentNode.style, this.props.styles.fixedPosition)
         // apply top value
         currentNode.style.top = `${this.state._headerFixedPosition}px`
-        if (currentWindowScrollTop + (index + 2) * currentHeaderHeight > nextNode.originalPosition) {
+        if (currentWindowScrollTop + index * currentHeaderHeight > nextNode.originalPosition) {
           currentNode.style.position = 'absolute'
           currentNode.style.top = `${topPos}px`
         }
