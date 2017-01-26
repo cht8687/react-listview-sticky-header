@@ -66,7 +66,7 @@ export default class ReactListView extends Component {
       if (window.addEventListener) {
         findDOMNode(this.refs.listview).addEventListener(type, this.onScroll.bind(this), false)
       } else {
-        findDOMNode(this.refs.listview).attachEvent('on' + type, this.onScroll.bind(this), false)
+        findDOMNode(this.refs.listview).detachEvent('on' + type, this.onScroll.bind(this), false)
       }
     })
   }
