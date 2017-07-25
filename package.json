@@ -1,6 +1,6 @@
 {
   "name": "react-listview-sticky-header",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "react listview with sticky header",
   "main": "dist/index.js",
   "scripts": {
@@ -79,5 +79,8 @@
     "tape": "^4.5.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.10"
   }
 }

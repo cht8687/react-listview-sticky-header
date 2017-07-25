@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import ListHeader from './lib/ListHeader'
 import ListItems from './lib/ListItems'
+import PropTypes from 'prop-types'
 
 export default class ReactListView extends Component {
   static propTypes = {
