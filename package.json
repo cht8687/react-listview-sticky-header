@@ -14,8 +14,7 @@
     "test": "babel-node test/index.js | tnyan",
     "coverage": "babel-node node_modules/isparta/bin/isparta cover test/index.js",
     "coveralls": "npm run coverage -s && coveralls < coverage/lcov.info",
-    "postcoveralls": "rimraf ./coverage",
-    "teste2e": "nightwatch-autorun"
+    "postcoveralls": "rimraf ./coverage"
   },
   "repository": {
     "type": "git",
