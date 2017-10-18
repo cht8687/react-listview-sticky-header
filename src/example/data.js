@@ -1,69 +1,69 @@
 export const DATA = [
   {
-    headerName: 'ListA',
+    headerName: 'Electronics',
     items: [{
-      title: 'items1'
+      title: 'Macbook'
     },
       {
-        title: 'items2'
+        title: 'Dell'
       },
       {
-        title: 'items3'
+        title: 'HP'
       },
       {
-        title: 'items4'
+        title: 'Asus'
       },
       {
-        title: 'items5'
+        title: 'SAMSUNG'
       },
       {
-        title: 'items6'
+        title: 'Office Works'
       }]
   },
   {
-    headerName: 'ListB is bravo',
+    headerName: 'Home Appliances',
     items: [{
-      title: 'items1'
+      title: 'LG'
     },
       {
-        title: 'items2'
+        title: 'Philips'
       },
       {
-        title: 'items3'
+        title: 'BEKO'
       },
       {
-        title: 'items4'
+        title: 'Breville'
       },
       {
-        title: 'items5'
+        title: 'Fisher & Paykel'
       },
       {
-        title: 'items6'
+        title: 'Hisense'
       }]
   },
   {
-    headerName: 'ListC is Charlie',
+    headerName: 'Headphones & DJ',
     items: [{
-      title: 'items1'
+      title: 'BOSE'
     },
       {
-        title: 'items2'
+        title: 'Beats'
       },
       {
-        title: 'items3'
+        title: 'Sony'
       },
       {
-        title: 'items4'
+        title: 'JBL'
       },
       {
-        title: 'items5'
+        title: 'Marley'
       },
       {
-        title: 'items6'
+        title: 'Pioneer DJ'
       }]
   },
   {
-    headerName: 'ListD is Dynamic',
+    headerName: 'Kitchen',
     items: [{
       title: 'items1'
     },

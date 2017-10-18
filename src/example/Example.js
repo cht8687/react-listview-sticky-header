@@ -5,10 +5,11 @@ import { DATA } from './data'
 
 let styles = {
   outerDiv: {
-    height: '400px',
+    height: '420px',
     overflowY: 'auto',
-    outline: '1px dashed blue',
-    width: '400px'
+    outline: '#b9ceb6 dashed 1px',
+    width: '383px',
+    margin: '0 auto'
   },
 
   ul: {
@@ -26,12 +27,12 @@ let styles = {
   listHeader: {
     width: '383px',
     height: '27px',
-    background: 'green',
+    background: '#94D6CF',
     color: 'white'
   },
 
   listItems: {
-    color: 'blue'
+    color: '#a9adab'
   }
 }
 

@@ -28,7 +28,7 @@ export default class ReactListView extends Component {
   }
 
   componentWillUnmount () {
-     // unRegister events listeners with the listview div
+    // unRegister events listeners with the listview div
     this.state.events.forEach((type) => {
       if (window.addEventListener) {
         findDOMNode(this.refs.listview).removeEventListener(type, this.onScroll.bind(this), false)
@@ -40,7 +40,7 @@ export default class ReactListView extends Component {
 
   refsToArray (ctx, prefix) {
     let results = []
-    for (let i = 0; ;i++) {
+    for (let i = 0; ; i++) {
       let ref = ctx.refs[prefix + '-' + String(i)]
       if (ref) results.push(ref)
       else return results
@@ -57,7 +57,7 @@ export default class ReactListView extends Component {
       return headerAndPosInfo
     })
     this.setState({
-      _instances: Object.assign(this.state._instances, {_originalPositions}),
+      _instances: Object.assign(this.state._instances, { _originalPositions }),
       _firstChildWrapper: listHeaders[0].refs.followWrap,
       _headerFixedPosition: listHeaders[0].refs.header.getBoundingClientRect().top
     })
@@ -85,7 +85,6 @@ export default class ReactListView extends Component {
         nextNode = this.state._instances._originalPositions[index + 1]
       }
       if (nextNode) {
-        // temporily disable the clapsed effect
       }
       if (index === 0) {
         if (currentWindowScrollTop === c.originalPosition) {
@@ -93,7 +92,7 @@ export default class ReactListView extends Component {
           ignoreCheck = true
         }
       }
-      if (!ignoreCheck && (c.originalPosition) < (currentWindowScrollTop + this.state._headerFixedPosition + currentHeaderHeight)) {
+      if (!ignoreCheck && (c.originalPosition) < (currentWindowScrollTop + this.state._headerFixedPosition + index * currentHeaderHeight)) {
         Object.assign(currentNode.style, this.props.styles.fixedPosition)
         // apply top value
         currentNode.style.top = `${this.state._headerFixedPosition}px`
@@ -109,7 +108,7 @@ export default class ReactListView extends Component {
 
   render () {
     const { data, headerAttName, itemsAttName } = this.props
-    const { styles: {outerDiv, ul, listHeader, listItems, li} } = this.props
+    const { styles: { outerDiv, ul, listHeader, listItems, li } } = this.props
     let _refi = 0
     let makeRef = () => {
       return `ListHeader-${_refi++}`
@@ -118,25 +117,25 @@ export default class ReactListView extends Component {
     return (
       <div ref='listview' style={outerDiv}>
         <ul style={ul}>
-        {
-          Object.keys(data).map((k) => {
-            const header = data[k][headerAttName]
-            const items = data[k][itemsAttName]
-            return (
-              <li key={k}>
-                <ListHeader
-                  ref={makeRef()}
-                  header={header}
-                  styles={listHeader}
-                />
-                <ListItems
-                  items={items}
-                  styles={listItems}
-                />
-              </li>
-            )
-          })
-        }
+          {
+            Object.keys(data).map((k) => {
+              const header = data[k][headerAttName]
+              const items = data[k][itemsAttName]
+              return (
+                <li key={k}>
+                  <ListHeader
+                    ref={makeRef()}
+                    header={header}
+                    styles={listHeader}
+                  />
+                  <ListItems
+                    items={items}
+                    styles={listItems}
+                  />
+                </li>
+              )
+            })
+          }
         </ul>
       </div>
     )

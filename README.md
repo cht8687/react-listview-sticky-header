@@ -116,35 +116,35 @@ In above example, it's `items`.
 ```js
 let styles = {
   outerDiv: {
-    height: '400px',
+    height: '420px',
     overflowY: 'auto',
-    outline: '1px dashed blue',
-    width: '400px',
+    outline: '#b9ceb6 dashed 1px',
+    width: '383px'
   },
 
   ul: {
     margin: '0px',
     listStyleType: 'none',
-    padding: '0'
+    padding: '0px'
   },
 
   fixedPosition: {
-    position : 'fixed',
-    width : '383px',
+    position: 'fixed',
+    width: '383px',
     top: '0px'
   },
 
   listHeader: {
     width: '383px',
-    height: '20px',
-    background: 'green',
+    height: '27px',
+    background: '#94D6CF',
     color: 'white'
   },
 
   listItems: {
-    color: 'blue'
-  },
-};
+    color: '#a9adab'
+  }
+}
 ```
 
 `outerDiv`, `ul`, `fixedPosition`, `listHeader`, `listItems` are required, you can modify the CSS to meet your needs.
