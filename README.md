@@ -69,11 +69,11 @@ Since React is peer dependency, you need to install it manually if you haven't.
 
 ```js
 <ReactListView 
-        data={data} 
-        headerAttName="headerName"
-        itemsAttName="items" 
-        styles={styles}
-      />
+    data={data} 
+    headerAttName="headerName"
+    itemsAttName="items" 
+    styles={styles}
+/>
 ```
 
 ## Options
@@ -83,7 +83,7 @@ Since React is peer dependency, you need to install it manually if you haven't.
 ```js
 const DATALIST = [
 {
- 	headerName : "ListA",
+  headerName : "ListA",
     items : [{
       title : "items1"
     }, {
@@ -91,7 +91,7 @@ const DATALIST = [
     }]
 },
 {
- 	headerName : "ListB",
+  headerName : "ListB",
     items : [{
       title : "items1"
     }, {
