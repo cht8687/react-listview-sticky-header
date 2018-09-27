@@ -12,7 +12,7 @@ export default class ReactListView extends Component {
     styles: PropTypes.object.isRequired
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -23,22 +23,22 @@ export default class ReactListView extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.initStickyHeaders()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     // unRegister events listeners with the listview div
     this.state.events.forEach((type) => {
       if (window.addEventListener) {
         findDOMNode(this.refs.listview).removeEventListener(type, this.onScroll.bind(this), false)
       } else {
-        findDOMNode(this.refs.listview).attachEvent('on' + type, this.onScroll.bind(this), false)
+        findDOMNode(this.refs.listview).detachEvent('on' + type, this.onScroll.bind(this), false)
       }
     })
   }
 
-  refsToArray (ctx, prefix) {
+  refsToArray(ctx, prefix) {
     let results = []
     for (let i = 0; ; i++) {
       let ref = ctx.refs[prefix + '-' + String(i)]
@@ -47,7 +47,7 @@ export default class ReactListView extends Component {
     }
   }
 
-  initStickyHeaders () {
+  initStickyHeaders() {
     let listHeaders = this.refsToArray(this, 'ListHeader')
     let _originalPositions = listHeaders.map((l) => {
       let headerAndPosInfo = {
@@ -72,7 +72,7 @@ export default class ReactListView extends Component {
     })
   }
 
-  onScroll () {
+  onScroll() {
     // update current header positions and apply fixed positions to the top one
     let currentWindowScrollTop = this.state._headerFixedPosition - this.state._firstChildWrapper.getBoundingClientRect().top
     this.state._instances._originalPositions.forEach((c, index) => {
@@ -106,7 +106,7 @@ export default class ReactListView extends Component {
     })
   }
 
-  render () {
+  render() {
     const { data, headerAttName, itemsAttName } = this.props
     const { styles: { outerDiv, ul, listHeader, listItems, li } } = this.props
     let _refi = 0
