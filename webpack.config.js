@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 var env = process.env.NODE_ENV || 'development';
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   devtool: 'source-map',
@@ -18,27 +19,45 @@ module.exports = {
          NODE_ENV: '"' + env + '"'
         }
       }),
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: "[name].css",
+        chunkFilename: "[id].css"
+      })
     ],
     module: {
-      loaders: [
+      rules: [
         {
-          test: /\.js$/, 
-          loaders: ['react-hot', 'babel'],
+          test: /\.js$/,
+          loaders: ['babel-loader'],
+          include: [path.resolve('src')]
+        },
+        {
+          test: /\.css$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                // you can specify a publicPath here
+                // by default it use publicPath in webpackOptions.output
+                publicPath: '../'
+              }
+            },
+            "css-loader"
+          ]
+        },
+        {
+          enforce: 'pre',
+          test: /\.js$/,
+          loaders: ['eslint-loader'],
           include: [path.resolve('src')]
         }
-      ],
-      preLoaders: [
-        {
-          test: /\.js$/, 
-          loaders: ['eslint-loader'], 
-          include: [path.resolve('src')]
-        }
-      ]   
+      ]
     },
-    resolve: { extensions: ['', '.js'] },
+    resolve: { extensions: ['.js'] },
     stats: { colors: true },
-    eslint: { configFile: 'src/.eslintrc' },
     devServer: {
       hot: true,
       historyApiFallback: true,
@@ -46,5 +65,4 @@ module.exports = {
         chunkModules: false,
         colors: true
       }
-    }
-};
+    }};
