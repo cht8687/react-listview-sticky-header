@@ -84,13 +84,9 @@ export default class ReactListView extends Component {
       if (index < this.state._instances._originalPositions.length - 1) {
         nextNode = this.state._instances._originalPositions[index + 1]
       }
-      if (nextNode) {
-      }
-      if (index === 0) {
-        if (currentWindowScrollTop === c.originalPosition) {
-          currentNode.style.position = ''
-          ignoreCheck = true
-        }
+      if (index === 0 && currentWindowScrollTop === c.originalPosition) {
+        currentNode.style.position = ''
+        ignoreCheck = true
       }
       if (!ignoreCheck && (c.originalPosition) < (currentWindowScrollTop + this.state._headerFixedPosition + index * currentHeaderHeight)) {
         Object.assign(currentNode.style, this.props.styles.fixedPosition)
